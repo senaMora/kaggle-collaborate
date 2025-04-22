@@ -1,0 +1,45 @@
+name: Sync to Kaggle
+
+on:
+  push:
+    branches: [main]  # or your working branch
+
+jobs:
+  kaggle-sync:
+    runs-on: ubuntu-latest
+
+    env:
+      KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+      KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+      GIT_BRANCH: kaggle-output
+      GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install Kaggle API
+      run: pip install kaggle
+
+    - name: Push notebook to Kaggle
+      run: python kaggle_push.py
+
+    - name: Wait for notebook run (20s buffer)
+      run: sleep 20
+
+    - name: Pull updated notebook from Kaggle
+      run: python kaggle_pull.py
+
+    - name: Push results to GitHub branch
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git checkout -b $GIT_BRANCH
+        git add kaggle_outputs/
+        git commit -m "Update from Kaggle run"
+        git push --force origin $GIT_BRANCH
