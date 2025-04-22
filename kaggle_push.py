@@ -10,7 +10,7 @@ kernel_slug = "kavindu210588u/kaggle-git.ipynb"
 kernel_meta = f"""
 {{
   "id": "{kernel_slug}",
-  "title": "kaggle-git",
+  "title": "kaggle-git.ipynb",
   "code_file": "{notebook_path}",
   "language": "python",
   "kernel_type": "notebook",
