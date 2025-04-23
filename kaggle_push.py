@@ -3,7 +3,7 @@ import os
 notebook_path = "dummy_notebook.ipynb"
 kaggle_username = os.environ['KAGGLE_USERNAME']
 # kernel_slug = f"{kaggle_username}/kaggle-git.ipynb"
-kernel_slug = "kavindu210588u/kaggle-and-git"
+kernel_slug = "kavindu210588u/kaggle-and-git.ipynb"
 
 
 # prepare kernel-metadata.json
