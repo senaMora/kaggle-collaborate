@@ -10,7 +10,6 @@ kernel_slug = "kavindu210588u/kaggle-and-git.ipynb"
 kernel_meta = f"""
 {{
   "id": "{kernel_slug}",
-  # "title": "Kaggle and Git",
   "code_file": "{notebook_path}",
   "language": "python",
   "kernel_type": "notebook",
@@ -22,3 +21,7 @@ with open("notebooks/kernel-metadata.json", "w") as f:
     f.write(kernel_meta)
 
 os.system(f"kaggle kernels push -p notebooks")
+
+
+
+  # "title": "Kaggle and Git",
