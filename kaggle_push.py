@@ -21,4 +21,6 @@ kernel_meta = f"""
 with open("notebooks/kernel-metadata.json", "w") as f:
     f.write(kernel_meta)
 
+print(kernel_meta)
+
 os.system(f"kaggle kernels push -p notebooks")
